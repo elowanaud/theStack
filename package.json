@@ -1,5 +1,5 @@
 {
-  "name": "theStack",
+  "name": "the-stack",
   "private": true,
   "scripts": {
     "build": "turbo run build",
