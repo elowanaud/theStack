@@ -1,0 +1,11 @@
+{
+  "name": "@the-stack/tailwind-theme",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.css"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.0.6"
+  }
+}
