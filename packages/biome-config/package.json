@@ -1,0 +1,10 @@
+{
+  "name": "@the-stack/biome-config",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./base": "./src/base.json",
+    "./react": "./src/react.json",
+    "./next": "./src/next.json"
+  }
+}

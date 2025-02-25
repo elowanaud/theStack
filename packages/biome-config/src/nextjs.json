@@ -1,0 +1,14 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "linter": {
+    "rules": {
+      "nursery": {
+        "noDocumentImportInPage": "error",
+        "noHeadElement": "error",
+        "noHeadImportInDocument": "error",
+        "noImgElement": "error",
+        "useGoogleFontDisplay": "error"
+      }
+    }
+  }
+}
