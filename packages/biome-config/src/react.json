@@ -10,7 +10,6 @@
         "useFragmentSyntax": "error"
       },
       "nursery": {
-        "useComponentExportOnlyModules": "error",
         "useConsistentCurlyBraces": "error",
         "useSortedClasses": {
           "fix": "safe",
