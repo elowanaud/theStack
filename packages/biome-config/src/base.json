@@ -30,7 +30,6 @@
         "useImportExtensions": "error"
       },
       "performance": {
-        "noBarrelFile": "error",
         "noReExportAll": "error",
         "useTopLevelRegex": "warn"
       },
