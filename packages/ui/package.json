@@ -13,7 +13,6 @@
 			"types": "./dist/icons.d.ts"
 		}
 	},
-	"files": ["dist"],
 	"scripts": {
 		"dev": "vite build --watch",
 		"build": "vite build",
