@@ -2,6 +2,7 @@
 	"name": "@the-stack/ui",
 	"private": true,
 	"type": "module",
+	"sideEffects": false,
 	"exports": {
 		"./components": {
 			"import": "./dist/components.js",
@@ -12,6 +13,7 @@
 			"types": "./dist/icons.d.ts"
 		}
 	},
+	"files": ["dist"],
 	"scripts": {
 		"dev": "vite build --watch",
 		"build": "vite build",
