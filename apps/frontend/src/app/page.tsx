@@ -1,3 +1,7 @@
+import { useTranslations } from "next-intl";
+
 export default function HomePage() {
-	return <h1>Hello World !</h1>;
+	const t = useTranslations();
+
+	return <h1>{t("hello")}</h1>;
 }

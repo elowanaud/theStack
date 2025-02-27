@@ -1,4 +1,5 @@
 import { env } from "@/lib/env";
+import { I18nProvider } from "@/providers/I18n";
 import { ReactScanProvider } from "@/providers/ReactScan";
 import type { PropsWithChildren } from "react";
 
@@ -6,7 +7,7 @@ export function Providers({ children }: PropsWithChildren) {
 	return (
 		<>
 			{env.NODE_ENV === "development" && <ReactScanProvider />}
-			{children}
+			<I18nProvider>{children}</I18nProvider>
 		</>
 	);
 }
