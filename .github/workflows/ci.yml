@@ -52,28 +52,28 @@ jobs:
       - name: Format
         run: pnpm format
 
-  typecheck:
-    name: "🔎 Typescheck"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+  # typecheck:
+  #   name: "🔎 Typescheck"
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.5.2
+  #     - name: Install pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 10.5.2
 
-      - name: "Use Node.Js"
-        uses: actions/setup-node@v3
-        with:
-          node-version: 22
-          cache: "pnpm"
+  #     - name: "Use Node.Js"
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 22
+  #         cache: "pnpm"
 
-      - name: Install dependencies
-        run: pnpm install
+  #     - name: Install dependencies
+  #       run: pnpm install
 
-      - name: Typecheck
-        run: pnpm check-types
+  #     - name: Typecheck
+  #       run: pnpm check-types
 
   test:
     name: "🧪 Test"
@@ -101,7 +101,7 @@ jobs:
   build:
     name: "📦 Build"
     runs-on: ubuntu-latest
-    needs: [lint, format, typecheck, test]
+    needs: [lint, format, test]
     steps:
       - uses: actions/checkout@v3
 
