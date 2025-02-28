@@ -26,7 +26,10 @@
 		"@the-stack/tailwind-theme": "workspace:*",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
-		"tailwindcss": "^4.0.9"
+		"tailwindcss": "^4.0.9",
+		"clsx": "^2.1.1",
+		"motion": "^12.4.7",
+		"tailwind-merge": "^3.0.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
