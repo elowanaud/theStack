@@ -2,6 +2,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import preserveDirectives from "rollup-preserve-directives";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
@@ -22,12 +23,24 @@ export default defineConfig({
 			formats: ["es"],
 		},
 		rollupOptions: {
-			external: ["react", "react-dom", "react/jsx-runtime"],
+			external: [
+				"react",
+				"react-dom",
+				"react/jsx-runtime",
+				"tailwind-merge",
+				"clsx",
+				"motion/react",
+				"motion/react-m",
+			],
 			output: {
 				globals: {
 					react: "React",
 					"react-dom": "ReactDOM",
 					"react/jsx-runtime": "jsxRuntime",
+					"tailwind-merge": "tailwind-merge",
+					clsx: "clsx",
+					"motion/react": "motion/react",
+					"motion/react-m": "motion/react-m",
 				},
 			},
 		},
@@ -35,6 +48,7 @@ export default defineConfig({
 	plugins: [
 		react(),
 		tailwindcss(),
+		preserveDirectives(),
 		dts({
 			rollupTypes: true,
 			tsconfigPath: resolve(__dirname, "tsconfig.app.json"),
