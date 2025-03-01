@@ -1,12 +1,21 @@
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { readdirSync, renameSync, rmSync } from "node:fs";
+import { resolve } from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import preserveDirectives from "rollup-preserve-directives";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const path = resolve(__dirname, "src/components");
+const fileNames = readdirSync(path);
+const componentEntries = Object.fromEntries(
+	fileNames.map((fileName) => {
+		return [
+			`components/${fileName}`,
+			resolve(path, fileName, `${fileName}.tsx`),
+		];
+	}),
+);
 
 export default defineConfig({
 	resolve: {
@@ -15,9 +24,10 @@ export default defineConfig({
 		},
 	},
 	build: {
+		outDir: "./dist",
 		lib: {
 			entry: {
-				components: resolve(__dirname, "src/components/index.ts"),
+				...componentEntries,
 				icons: resolve(__dirname, "src/icons/index.ts"),
 			},
 			formats: ["es"],
@@ -52,6 +62,17 @@ export default defineConfig({
 		dts({
 			rollupTypes: true,
 			tsconfigPath: resolve(__dirname, "tsconfig.app.json"),
+			outDir: ["./dist/components"],
+			afterBuild() {
+				rmSync(resolve(__dirname, "dist/components/components"), {
+					recursive: true,
+					force: true,
+				});
+				renameSync(
+					resolve(__dirname, "dist/components/icons.d.ts"),
+					resolve(__dirname, "dist/icons.d.ts"),
+				);
+			},
 		}),
 	],
 });

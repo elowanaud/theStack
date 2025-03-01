@@ -8,7 +8,7 @@ import type { ButtonHTMLAttributes, Ref } from "react";
 export type ButtonProps = Prettify<
 	ButtonHTMLAttributes<HTMLButtonElement> & {
 		variant?: "primary" | "ghost";
-		size?: "base" | "icon";
+		size?: "base" | "icon" | "icon-sm";
 		loading?: boolean;
 		ref?: Ref<HTMLButtonElement>;
 	}
@@ -40,11 +40,12 @@ export function Button({
 		{
 			"bg-transparent text-neutral-950": variant === "ghost",
 			"hover:bg-neutral-100 focus-visible:bg-neutral-100": variant === "ghost",
-			"disabled:bg-neutral-100 disabled:opacity-50": variant === "ghost",
+			"disabled:opacity-50": variant === "ghost",
 		},
 		{
 			"h-9 px-4 text-sm [&_svg]:size-5": size === "base",
 			"size-9 [&_svg]:size-5": size === "icon",
+			"size-7 [&_svg]:size-4": size === "icon-sm",
 		},
 		{
 			"disabled:cursor-progress": loading,
