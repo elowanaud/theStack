@@ -1,4 +1,3 @@
-import { Button } from "@the-stack/ui/components/Button";
 import { useTranslations } from "next-intl";
 
 export default function HomePage() {
@@ -7,7 +6,6 @@ export default function HomePage() {
 	return (
 		<div>
 			<h1>{t("hello")}</h1>
-			<Button>Hello</Button>
 		</div>
 	);
 }

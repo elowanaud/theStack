@@ -5,7 +5,7 @@
 	"sideEffects": false,
 	"exports": {
 		"./components/*": "./dist/components/*.js",
-		"./icons": "./dist/icons/*.js"
+		"./icons": "./dist/icons.js"
 	},
 	"scripts": {
 		"dev": "vite build --watch",
