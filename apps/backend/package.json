@@ -6,7 +6,6 @@
 		"dev": "node ace serve --hmr",
 		"build": "node ace build",
 		"start": "node bin/server.js",
-		"test": "node ace test",
 		"lint": "biome lint",
 		"lint:fix": "biome lint --fix",
 		"format": "biome format",
