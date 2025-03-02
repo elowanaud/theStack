@@ -16,6 +16,7 @@ export function Password({ className, disabled, ...props }: PasswordProps) {
 			<Input
 				className={cn("pr-9", className)}
 				type={showPassword ? "text" : "password"}
+				disabled={disabled}
 				{...props}
 			/>
 			<Button

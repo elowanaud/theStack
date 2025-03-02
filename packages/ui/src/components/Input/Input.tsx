@@ -1,9 +1,11 @@
 import { cn } from "@/lib/cn";
-import type { InputHTMLAttributes } from "react";
+import type { InputHTMLAttributes, Ref } from "react";
 
-export type InputProps = InputHTMLAttributes<HTMLInputElement>;
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+	ref?: Ref<HTMLInputElement>;
+};
 
-export function Input({ className, ...props }: InputProps) {
+export function Input({ className, ref, ...props }: InputProps) {
 	const classes = cn(
 		[
 			"h-9 w-full rounded-md border border-neutral-300 bg-white px-3 text-neutral-950 text-sm transition-colors",
@@ -14,5 +16,5 @@ export function Input({ className, ...props }: InputProps) {
 		className,
 	);
 
-	return <input className={classes} {...props} />;
+	return <input ref={ref} className={classes} {...props} />;
 }

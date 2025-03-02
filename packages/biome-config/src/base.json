@@ -17,6 +17,9 @@
         "useDateNow": "error",
         "useSimplifiedLogicExpression": "error"
       },
+      "a11y": {
+        "noLabelWithoutControl": "off"
+      },
       "correctness": {
         "noInvalidNewBuiltin": "error",
         "noNewSymbol": "error",
