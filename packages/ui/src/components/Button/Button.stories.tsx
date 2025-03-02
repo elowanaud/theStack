@@ -28,7 +28,7 @@ const meta = {
 			control: {
 				type: "select",
 			},
-			options: ["base", "icon"],
+			options: ["base", "icon", "icon-sm"],
 			type: "string",
 		},
 		disabled: {
@@ -81,6 +81,14 @@ export const IconSize: Story = {
 	args: {
 		variant: "ghost",
 		size: "icon",
+		children: <HouseIcon />,
+	},
+};
+
+export const IconSmallSize: Story = {
+	args: {
+		variant: "ghost",
+		size: "icon-sm",
 		children: <HouseIcon />,
 	},
 };
