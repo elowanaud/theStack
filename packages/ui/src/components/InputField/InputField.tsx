@@ -7,6 +7,7 @@ import {
 	Label,
 	type LabelProps,
 } from "@/components/Typography/Typography";
+import { cn } from "@/lib/cn";
 
 export type InputFieldProps = InputProps & {
 	label?: string;
@@ -15,6 +16,7 @@ export type InputFieldProps = InputProps & {
 	hintOptions?: Omit<HintTextProps, "children">;
 	error?: string;
 	errorOptions?: Omit<ErrorTextProps, "children">;
+	wrapperClassName?: string;
 };
 
 export function InputField({
@@ -26,11 +28,12 @@ export function InputField({
 	errorOptions,
 	required,
 	name,
+	wrapperClassName,
 	id = name,
 	...props
 }: InputFieldProps) {
 	return (
-		<div className="grid gap-0.5">
+		<div className={cn("grid gap-0.5", wrapperClassName)}>
 			{label && (
 				<Label htmlFor={id} required={required} {...labelOptions}>
 					{label}
