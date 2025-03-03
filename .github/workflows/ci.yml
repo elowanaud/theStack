@@ -10,7 +10,7 @@ jobs:
     name: "💅 Lint"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -18,7 +18,7 @@ jobs:
           version: 10.5.2
 
       - name: "Use Node.Js"
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
           cache: "pnpm"
@@ -33,7 +33,7 @@ jobs:
     name: "💅 Format"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -41,7 +41,7 @@ jobs:
           version: 10.5.2 
 
       - name: "Use Node.Js"
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
           cache: "pnpm"
@@ -56,7 +56,7 @@ jobs:
     name: "🧪 Test"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -64,7 +64,7 @@ jobs:
           version: 10.5.2
 
       - name: "Use Node.Js"
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22.14.0
           cache: "pnpm"
@@ -75,26 +75,52 @@ jobs:
       - name: Test
         run: pnpm test
 
-  build:
-    name: "📦 Build"
+  build-frontend:
+    name: "📦 Build Frontend"
     runs-on: ubuntu-latest
     needs: [lint, format, test]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.5.2
+      - name: Create .env
+        run: |
+          echo "${{ secrets.FRONTEND_ENV }}" > .env.frontend
+          echo "${{ secrets.BACKEND_ENV }}" > .env.backend
 
-      - name: "Use Node.Js"
-        uses: actions/setup-node@v3
-        with:
-          node-version: 22.14.0
-          cache: "pnpm"
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
-      - name: Install dependencies
-        run: pnpm install
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Build
-        run: pnpm build
+        uses: docker/build-push-action@v6
+        with:
+          file: ./apps/frontend/Dockerfile
+          context: .
+          push: false
+
+  build-backend:
+    name: "📦 Build Backend"
+    runs-on: ubuntu-latest
+    needs: [lint, format, test]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create .env
+        run: |
+          echo "${{ secrets.FRONTEND_ENV }}" > .env.frontend
+          echo "${{ secrets.BACKEND_ENV }}" > .env.backend
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build
+        uses: docker/build-push-action@v6
+        with:
+          file: ./apps/backend/Dockerfile
+          context: .
+          push: false

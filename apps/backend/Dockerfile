@@ -13,10 +13,10 @@ RUN npm install -g pnpm
 WORKDIR /app
 RUN pnpm install --global turbo@^2.4.4
 COPY . .
- 
+
 # Generate a partial monorepo with a pruned lockfile for a target workspace.
-RUN pnpm turbo prune "@the-stack/frontend" --docker
- 
+RUN pnpm turbo prune "@the-stack/backend" --docker
+
 # Add lockfile and package.json's of isolated subworkspace
 FROM base AS installer
 
@@ -38,22 +38,16 @@ COPY --from=builder /app/.env.frontend apps/frontend/.env
 COPY --from=builder /app/.env.backend apps/backend/.env
 
 RUN pnpm turbo run build
- 
+
 FROM base AS runner
 ENV NODE_ENV=production
 
 WORKDIR /app
- 
-# Don't run production as root
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-USER nextjs
- 
-COPY --from=installer --chown=nextjs:nodejs /app/apps/frontend/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/frontend/.next/static ./apps/frontend/.next/static
-COPY --from=installer --chown=nextjs:nodejs /app/apps/frontend/public ./apps/frontend/public
-COPY --from=installer --chown=nextjs:nodejs /app/apps/frontend/locales ./apps/frontend/locales
 
-EXPOSE 3000
- 
-CMD ["node", "apps/frontend/server.js"]
+COPY --from=installer /app/node_modules ./node_modules
+COPY --from=installer /app/apps/backend/node_modules ./apps/backend/node_modules
+COPY --from=installer /app/apps/backend/build ./apps/backend
+
+EXPOSE 8080
+
+CMD ["node", "apps/backend/bin/server.js"]
