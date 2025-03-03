@@ -34,7 +34,8 @@ RUN pnpm install --frozen-lockfile
  
 # Build the project
 COPY --from=builder /app/out/full/ .
-RUN pnpm turbo run build
+
+RUN pnpm turbo run build --filter=!./apps/backend
  
 FROM base AS runner
 ENV NODE_ENV=production
