@@ -21,12 +21,12 @@ export function useLogin() {
 		const { data: user, error } = await apiClient.auth.login.$post(data);
 
 		if (error) {
-			console.log(error.status)
-			console.log(error.value)
+			console.log(error.status);
+			console.log(error.value);
 			// TODO: send toast error
 		}
 
-		console.log(user)
+		console.log(user);
 		// TODO: store the user
 		// TODO: send toast success
 		// TODO: redirect to home
