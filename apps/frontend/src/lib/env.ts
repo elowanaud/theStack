@@ -5,7 +5,12 @@ export const env = createEnv({
 	server: {
 		NODE_ENV: z.enum(["development", "production", "test"]),
 	},
-	client: {},
+	client: {
+		NEXT_PUBLIC_API_URL: z.string().url(),
+	},
 	// You need to destructure client variables
-	experimental__runtimeEnv: {},
+	experimental__runtimeEnv: {
+		// biome-ignore lint/nursery/noProcessEnv: <explanation>
+		NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+	},
 });

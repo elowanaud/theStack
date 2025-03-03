@@ -1,4 +1,4 @@
-import { sleep } from "@/utils/sleep";
+import { apiClient } from "@/lib/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -18,9 +18,15 @@ export function useLogin() {
 	});
 
 	const onSubmit = async (data: z.infer<typeof validator>) => {
-		console.log(data);
-		await sleep(1000);
-		// TODO: call login api
+		const { data: user, error } = await apiClient.auth.login.$post(data);
+
+		if (error) {
+			// TODO: send toast error
+		}
+
+		// TODO: store the user
+		// TODO: send toast success
+		// TODO: redirect to home
 	};
 
 	return {
