@@ -1,14 +1,17 @@
-import { apiClient } from "@/lib/api";
+import { useApi } from "@/lib/api/client";
+import { useAuth } from "@/providers/Auth";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 export function useLogin() {
-	const validator = z.object({
-		email: z.string(),
-		password: z.string(),
-	});
-
+	const t = useTranslations("features.auth.login");
+	const tGlobalError = useTranslations("errors");
+	const router = useRouter();
+	const { setCurrentUser } = useAuth((state) => state);
 	const {
 		register,
 		formState: { isSubmitting },
@@ -18,18 +21,19 @@ export function useLogin() {
 	});
 
 	const onSubmit = async (data: z.infer<typeof validator>) => {
-		const { data: user, error } = await apiClient.auth.login.$post(data);
+		const { data: user, error } = await useApi.auth.login.$post(data);
 
 		if (error) {
-			console.log(error.status);
-			console.log(error.value);
-			// TODO: send toast error
+			if (error.status === 500) {
+				toast.error(tGlobalError("somethingWentWrong"));
+			} else {
+				toast.error(tGlobalError("invalidCredentials"));
+			}
+		} else {
+			setCurrentUser(user);
+			toast.success(t("toasts.loginSuccess"));
+			router.push("/");
 		}
-
-		console.log(user);
-		// TODO: store the user
-		// TODO: send toast success
-		// TODO: redirect to home
 	};
 
 	return {
@@ -39,3 +43,8 @@ export function useLogin() {
 		onSubmit,
 	};
 }
+
+const validator = z.object({
+	email: z.string(),
+	password: z.string(),
+});

@@ -1,0 +1,12 @@
+{
+	"features": {
+		"auth": {
+			"register": {
+				"register": "Register",
+				"toasts": {
+					"registerSuccess": "You are successfully registered"
+				}
+			}
+		}
+	}
+}

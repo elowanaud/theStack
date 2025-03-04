@@ -1,0 +1,22 @@
+{
+	"models": {
+		"user": {
+			"email": {
+				"label": "Adresse Email",
+				"errors": {
+					"email": "Adresse Email invalide",
+					"database": {
+						"unique": "Adresse Email déjà utilisée"
+					}
+				}
+			},
+			"password": {
+				"label": "Mot de passe",
+				"errors": {
+					"min": "Le mot de passe doit comporter au moins 8 caractères",
+					"max": "Le mot de passe doit comporter au plus 32 caractères"
+				}
+			}
+		}
+	}
+}

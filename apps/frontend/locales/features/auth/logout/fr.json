@@ -1,0 +1,12 @@
+{
+	"features": {
+		"auth": {
+			"logout": {
+				"logout": "Se déconnecter",
+				"toasts": {
+					"logoutSuccess": "Vous êtes déconnecté avec succès"
+				}
+			}
+		}
+	}
+}

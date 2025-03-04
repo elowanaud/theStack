@@ -1,4 +1,9 @@
 {
+	// Search
+	"search.exclude": {
+		"**/.next": true
+	},
+
 	// BiomeJs Settings
 	"editor.defaultFormatter": "biomejs.biome",
 	"editor.formatOnSave": true,

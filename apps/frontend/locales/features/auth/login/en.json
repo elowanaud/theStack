@@ -1,0 +1,13 @@
+{
+	"features": {
+		"auth": {
+			"login": {
+				"login": "Login",
+				"forgotPassword": "Forgot your password?",
+				"toasts": {
+					"loginSuccess": "You are successfully logged in"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"app": {
+		"login": {
+			"title": "Login to theStack",
+			"dontHaveAccount": "Don't have an account?",
+			"register": "Register"
+		}
+	}
+}

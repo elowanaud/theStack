@@ -1,11 +1,10 @@
-import { useTranslations } from "next-intl";
+import { LogoutButton } from "@/features/auth/logout/components/LogoutButton";
 
 export default function HomePage() {
-	const t = useTranslations();
-
 	return (
 		<div>
-			<h1>{t("hello")}</h1>
+			<h1>Private page</h1>
+			<LogoutButton />
 		</div>
 	);
 }
