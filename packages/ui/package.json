@@ -19,7 +19,7 @@
 	"peerDependencies": {
 		"@the-stack/tailwind-theme": "workspace:*",
 		"clsx": "^2.1.1",
-		"motion": "^12.4.7",
+		"motion": "^12.4.10",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"tailwind-merge": "^3.0.2",

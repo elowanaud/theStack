@@ -41,7 +41,7 @@
 		"@japa/assert": "^4.0.1",
 		"@japa/plugin-adonisjs": "^4.0.0",
 		"@japa/runner": "^4.2.0",
-		"@swc/core": "1.11.6",
+		"@swc/core": "1.11.7",
 		"@the-stack/biome-config": "workspace:*",
 		"@tuyau/utils": "^0.0.7",
 		"@types/luxon": "^3.4.2",
@@ -65,7 +65,10 @@
 		"reflect-metadata": "^0.2.2"
 	},
 	"hotHook": {
-		"boundaries": ["./app/controllers/**/*.ts", "./app/middleware/*.ts"]
+		"boundaries": [
+			"./app/controllers/**/*.ts",
+			"./app/middleware/*.ts"
+		]
 	},
 	"prettier": "@adonisjs/prettier-config"
 }
