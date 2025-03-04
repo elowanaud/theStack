@@ -19,7 +19,7 @@
 	"peerDependencies": {
 		"@the-stack/tailwind-theme": "workspace:*",
 		"clsx": "^2.1.1",
-		"motion": "^12.4.7",
+		"motion": "^12.4.10",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"tailwind-merge": "^3.0.2",
@@ -40,6 +40,6 @@
 		"storybook": "^8.6.3",
 		"typescript": "^5.8.2",
 		"vite": "^6.2.0",
-		"vite-plugin-dts": "^4.5.1"
+		"vite-plugin-dts": "^4.5.3"
 	}
 }

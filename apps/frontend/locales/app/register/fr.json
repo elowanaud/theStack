@@ -1,0 +1,9 @@
+{
+	"app": {
+		"register": {
+			"title": "Inscrivez-vous à theStack",
+			"alreadyHaveAccount": "Vous avez déjà un compte ?",
+			"login": "Se Connecter"
+		}
+	}
+}

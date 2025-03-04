@@ -1,4 +1,4 @@
-import { sleep } from "@/utils/sleep";
+import { getApi } from "@/lib/api/server";
 import { type NextRequest, NextResponse } from "next/server";
 
 const GUEST_ROUTES = ["/login", "/register"];
@@ -20,13 +20,16 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
 	matcher: [
-		// biome-ignore lint/nursery/noSecrets: <explanation>
 		"/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
 	],
 };
 
 async function checkAuth(request: NextRequest) {
-	await sleep(1);
-	// TODO: fetch user from cookie
-	return false;
+	const { data, error } = await getApi(request.cookies).auth.me.$get();
+
+	if (error || !data) {
+		return false;
+	}
+
+	return data;
 }

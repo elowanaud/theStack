@@ -1,0 +1,13 @@
+{
+	"features": {
+		"auth": {
+			"login": {
+				"login": "Se connecter",
+				"forgotPassword": "Mot de passe oublié ?",
+				"toasts": {
+					"loginSuccess": "Vous êtes connecté avec succès"
+				}
+			}
+		}
+	}
+}

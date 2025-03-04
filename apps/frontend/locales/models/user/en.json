@@ -1,0 +1,22 @@
+{
+	"models": {
+		"user": {
+			"email": {
+				"label": "Email",
+				"errors": {
+					"email": "Invalid email",
+					"database": {
+						"unique": "Email already taken"
+					}
+				}
+			},
+			"password": {
+				"label": "Password",
+				"errors": {
+					"min": "Password must be at least 8 characters long",
+					"max": "Password must be at most 32 characters long"
+				}
+			}
+		}
+	}
+}

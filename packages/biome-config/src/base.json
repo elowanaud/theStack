@@ -1,11 +1,11 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "formatter": {
-    "ignore": ["dist", ".turbo", ".next", ".adonisjs"],
+    "ignore": ["dist", ".turbo", ".next", ".adonisjs", "build"],
     "enabled": true
   },
   "linter": {
-    "ignore": ["dist", ".turbo", ".next", ".adonisjs"],
+    "ignore": ["dist", ".turbo", ".next", ".adonisjs", "build"],
     "enabled": true,
     "rules": {
       "recommended": true,
@@ -81,7 +81,6 @@
         "noNestedTernary": "error",
         "noOctalEscape": "error",
         "noProcessEnv": "error",
-        "noSecrets": "error",
         "noStaticElementInteractions": "error",
         "noSubstr": "error",
         "noTemplateCurlyInString": "error",
@@ -94,7 +93,7 @@
     }
   },
   "organizeImports": {
-    "ignore": ["dist", ".turbo", ".next", ".adonisjs"],
+    "ignore": ["dist", ".turbo", ".next", ".adonisjs", "build"],
     "enabled": true
   }
 }

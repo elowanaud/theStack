@@ -4,8 +4,12 @@ import { useRegister } from "@/features/auth/register/hooks/useRegister";
 import { Button } from "@the-stack/ui/components/Button";
 import { InputField } from "@the-stack/ui/components/InputField";
 import { PasswordField } from "@the-stack/ui/components/PasswordField";
+import { useTranslations } from "next-intl";
 
 export function RegisterForm() {
+	const t = useTranslations("features.auth.register");
+	const tUser = useTranslations("models.user");
+
 	const { register, isSubmitting, errors, handleSubmit, onSubmit } =
 		useRegister();
 
@@ -17,19 +21,21 @@ export function RegisterForm() {
 		>
 			<InputField
 				type="email"
-				label="Email"
-				error={errors.email?.message}
+				label={tUser("email.label")}
+				error={errors.email && tUser(`email.errors.${errors.email.message}`)}
 				autoComplete="email"
 				{...register("email")}
 			/>
 			<PasswordField
-				label="Password"
-				error={errors.password?.message}
+				label={tUser("password.label")}
+				error={
+					errors.password && tUser(`password.errors.${errors.password.message}`)
+				}
 				autoComplete="current-password"
 				{...register("password")}
 			/>
 			<Button type="submit" loading={isSubmitting}>
-				Register
+				{t("register")}
 			</Button>
 		</form>
 	);
