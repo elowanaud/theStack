@@ -8,7 +8,7 @@ export default class ResetPasswordController {
 	constructor(protected tokenService: ResetPasswordTokenService) {}
 
 	async handle({ request, response }: HttpContext) {
-		const { token, password } = await request.validateUsing(this.#validator);
+		const { token, password } = await request.validateUsing(validator);
 
 		const isValidToken = await this.tokenService.verify(token);
 		if (!isValidToken) {
@@ -26,11 +26,11 @@ export default class ResetPasswordController {
 			})
 			.save();
 	}
-
-	#validator = vine.compile(
-		vine.object({
-			token: vine.string(),
-			password: vine.string(),
-		}),
-	);
 }
+
+export const validator = vine.compile(
+	vine.object({
+		token: vine.string(),
+		password: vine.string(),
+	}),
+);

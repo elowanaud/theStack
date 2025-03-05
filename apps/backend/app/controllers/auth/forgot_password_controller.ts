@@ -11,7 +11,7 @@ export default class ForgotPasswordController {
 	constructor(protected tokenService: ResetPasswordTokenService) {}
 
 	async handle({ request }: HttpContext) {
-		const payload = await request.validateUsing(this.#validator);
+		const payload = await request.validateUsing(validator);
 		const user = await User.findBy("email", payload.email);
 		const token = await this.tokenService.generate(user);
 
@@ -26,10 +26,10 @@ export default class ForgotPasswordController {
 			});
 		}
 	}
-
-	#validator = vine.compile(
-		vine.object({
-			email: vine.string().trim().email(),
-		}),
-	);
 }
+
+export const validator = vine.compile(
+	vine.object({
+		email: vine.string().trim().email(),
+	}),
+);
