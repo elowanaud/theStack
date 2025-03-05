@@ -3,6 +3,7 @@ import { env } from "@/lib/env";
 import { AuthProvider } from "@/providers/Auth";
 import { I18nProvider } from "@/providers/I18n";
 import { NuqsProvider } from "@/providers/Nuqs";
+import { PageLoadingBarProvider } from "@/providers/PageLoadingBar";
 import { ReactQueryProvider } from "@/providers/ReactQuery";
 import { ReactScanProvider } from "@/providers/ReactScan";
 import { ToasterProvider } from "@/providers/Toaster";
@@ -16,6 +17,7 @@ export async function Providers({ children }: PropsWithChildren) {
 	return (
 		<>
 			{env.NODE_ENV === "development" && <ReactScanProvider />}
+			<PageLoadingBarProvider />
 			<AuthProvider currentUser={currentUser}>
 				<I18nProvider>
 					<ReactQueryProvider>
