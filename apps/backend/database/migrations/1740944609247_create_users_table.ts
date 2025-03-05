@@ -15,7 +15,6 @@ export default class extends BaseSchema {
 		});
 	}
 
-	// biome-ignore lint/suspicious/useAwait: <explanation>
 	async down() {
 		this.schema.dropTable(this.tableName);
 	}
