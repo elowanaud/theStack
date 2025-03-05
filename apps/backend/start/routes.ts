@@ -7,6 +7,14 @@ router
 	.group(() => {
 		router.post("/auth/login", "#controllers/auth/login_controller");
 		router.post("/auth/register", "#controllers/auth/register_controller");
+		router.post(
+			"/auth/forgot_password",
+			"#controllers/auth/forgot_password_controller",
+		);
+		router.post(
+			"/auth/reset_password",
+			"#controllers/auth/reset_password_controller",
+		);
 	})
 	.use(middleware.guest());
 

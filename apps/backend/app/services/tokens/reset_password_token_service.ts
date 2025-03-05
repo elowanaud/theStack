@@ -3,9 +3,13 @@ import { DateTime } from "luxon";
 import Token from "#models/token";
 import type User from "#models/user";
 
-export class ResetPasswordService {
-	async generateToken(user: User) {
+export class ResetPasswordTokenService {
+	async generate(user: User | null) {
 		const token = string.generateRandom(64);
+
+		if (!user) {
+			return token;
+		}
 
 		await this.#deleteOldTokens(user);
 
@@ -18,10 +22,19 @@ export class ResetPasswordService {
 		return record.token;
 	}
 
-	async verify(user: User, token: string) {
+	async getUserFromToken(token: string) {
 		const record = await Token.query()
 			.where("type", "RESET_PASSWORD")
-			.where("user_id", user.id)
+			.where("token", token)
+			.where("expires_at", ">", DateTime.now().toSQL())
+			.first();
+
+		return record?.user;
+	}
+
+	async verify(token: string) {
+		const record = await Token.query()
+			.where("type", "RESET_PASSWORD")
 			.where("token", token)
 			.where("expires_at", ">", DateTime.now().toSQL())
 			.first();

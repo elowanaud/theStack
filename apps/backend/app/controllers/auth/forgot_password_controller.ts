@@ -2,25 +2,24 @@ import { inject } from "@adonisjs/core";
 import type { HttpContext } from "@adonisjs/core/http";
 import vine from "@vinejs/vine";
 import User from "#models/user";
-import { UserPresenter } from "#presenters/user_presenter";
+import { ResetPasswordTokenService } from "#services/tokens/reset_password_token_service";
 import UserValidator from "#validators/user";
 
 @inject()
-export default class RegisterController {
-	constructor(protected presenter: UserPresenter) {}
+export default class ForgotPasswordController {
+	constructor(protected tokenService: ResetPasswordTokenService) {}
 
-	async handle({ request, auth }: HttpContext) {
+	async handle({ request }: HttpContext) {
 		const payload = await request.validateUsing(this.#validator);
-		const user = await User.create(payload);
-		await auth.use("web").login(user);
+		const user = await User.findBy("email", payload.email);
+		const token = await this.tokenService.generate(user);
 
-		return this.presenter.toJSON(user);
+		// send email if user exists
 	}
 
 	#validator = vine.compile(
 		vine.object({
 			email: UserValidator.getProperties().email,
-			password: UserValidator.getProperties().password,
 		}),
 	);
 }
