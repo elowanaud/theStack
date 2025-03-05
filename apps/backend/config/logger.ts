@@ -31,6 +31,5 @@ export default loggerConfig;
  * in your application.
  */
 declare module "@adonisjs/core/types" {
-	// biome-ignore lint/correctness/noUndeclaredVariables: <explanation>
 	export interface LoggersList extends InferLoggers<typeof loggerConfig> {}
 }

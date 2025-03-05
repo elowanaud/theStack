@@ -12,12 +12,12 @@ export default class ResetPasswordController {
 
 		const isValidToken = await this.tokenService.verify(token);
 		if (!isValidToken) {
-			return response.unprocessableEntity();
+			return response.unauthorized();
 		}
 
 		const user = await this.tokenService.getUserFromToken(token);
 		if (!user) {
-			return response.unprocessableEntity();
+			return response.unauthorized();
 		}
 
 		await user

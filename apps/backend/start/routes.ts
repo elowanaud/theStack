@@ -8,11 +8,11 @@ router
 		router.post("/auth/login", "#controllers/auth/login_controller");
 		router.post("/auth/register", "#controllers/auth/register_controller");
 		router.post(
-			"/auth/forgot_password",
+			"/auth/forgot-password",
 			"#controllers/auth/forgot_password_controller",
 		);
 		router.post(
-			"/auth/reset_password",
+			"/auth/reset-password",
 			"#controllers/auth/reset_password_controller",
 		);
 	})
