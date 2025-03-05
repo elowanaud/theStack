@@ -16,8 +16,16 @@ type AuthLoginPost = {
   response: MakeNonSerializedTuyauResponse<import('../app/controllers/auth/login_controller.ts').default['handle'], false>
 }
 type AuthRegisterPost = {
-  request: MakeTuyauRequest<InferInput<typeof import('../app/controllers/auth/register_controller.ts')['registerValidator']>>
+  request: MakeTuyauRequest<InferInput<typeof import('../app/controllers/auth/register_controller.ts')['validator']>>
   response: MakeNonSerializedTuyauResponse<import('../app/controllers/auth/register_controller.ts').default['handle'], true>
+}
+type AuthForgotpasswordPost = {
+  request: MakeTuyauRequest<InferInput<typeof import('../app/controllers/auth/forgot_password_controller.ts')['validator']>>
+  response: MakeNonSerializedTuyauResponse<import('../app/controllers/auth/forgot_password_controller.ts').default['handle'], true>
+}
+type AuthResetpasswordPost = {
+  request: MakeTuyauRequest<InferInput<typeof import('../app/controllers/auth/reset_password_controller.ts')['validator']>>
+  response: MakeNonSerializedTuyauResponse<import('../app/controllers/auth/reset_password_controller.ts').default['handle'], true>
 }
 type AuthLogoutDelete = {
   request: unknown
@@ -40,6 +48,16 @@ export interface ApiDefinition {
       '$url': {
       };
       '$post': AuthRegisterPost;
+    };
+    'forgot-password': {
+      '$url': {
+      };
+      '$post': AuthForgotpasswordPost;
+    };
+    'reset-password': {
+      '$url': {
+      };
+      '$post': AuthResetpasswordPost;
     };
     'logout': {
       '$url': {

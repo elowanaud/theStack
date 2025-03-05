@@ -10,7 +10,7 @@ export default class RegisterController {
 	constructor(protected presenter: UserPresenter) {}
 
 	async handle({ request, auth }: HttpContext) {
-		const payload = await request.validateUsing(registerValidator);
+		const payload = await request.validateUsing(validator);
 		const user = await User.create(payload);
 		await auth.use("web").login(user);
 
@@ -18,7 +18,7 @@ export default class RegisterController {
 	}
 }
 
-export const registerValidator = vine.compile(
+export const validator = vine.compile(
 	vine.object({
 		email: UserValidator.getProperties().email,
 		password: UserValidator.getProperties().password,

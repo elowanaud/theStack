@@ -5,6 +5,9 @@
 		"rules": {
 			"style": {
 				"useImportType": "off"
+			},
+			"correctness": {
+				"noUndeclaredVariables": "off"
 			}
 		}
 	}
