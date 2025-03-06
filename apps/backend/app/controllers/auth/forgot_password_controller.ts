@@ -4,16 +4,17 @@ import mail from "@adonisjs/mail/services/main";
 import vine from "@vinejs/vine";
 import User from "#models/user";
 import { ResetPasswordTokenService } from "#services/tokens/reset_password_token_service";
-import env from "#start/env";
 
 @inject()
 export default class ForgotPasswordController {
-	constructor(protected tokenService: ResetPasswordTokenService) {}
+	constructor(protected resetPasswordTokenService: ResetPasswordTokenService) {}
 
 	async handle({ request }: HttpContext) {
-		const payload = await request.validateUsing(validator);
-		const user = await User.findBy("email", payload.email);
-		const token = await this.tokenService.generate(user);
+		const { email, url } = await request.validateUsing(validator);
+		const user = await User.findBy("email", email);
+		const token = await this.resetPasswordTokenService.generate(user);
+		const resetPasswordLink = new URL(url);
+		resetPasswordLink.searchParams.set("token", token);
 
 		if (user) {
 			await mail.sendLater((message) => {
@@ -21,7 +22,7 @@ export default class ForgotPasswordController {
 					.to(user.email)
 					.subject("Reset your password")
 					.text(
-						`Hello ${user.email}, you can reset your password by clicking on the following link: ${env.get("FRONTEND_URL")}/reset-password?token=${token}`,
+						`Hello ${user.email}, you can reset your password by clicking on the following link: ${resetPasswordLink}`,
 					);
 			});
 		}
@@ -31,5 +32,6 @@ export default class ForgotPasswordController {
 export const validator = vine.compile(
 	vine.object({
 		email: vine.string().trim().email(),
+		url: vine.string().trim().url({ require_tld: false }),
 	}),
 );

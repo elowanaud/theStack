@@ -1,7 +1,12 @@
 import { getApi } from "@/lib/api/server";
 import { type NextRequest, NextResponse } from "next/server";
 
-const GUEST_ROUTES = ["/login", "/register"];
+const GUEST_ROUTES = [
+	"/login",
+	"/register",
+	"/forgot-password",
+	"/reset-password",
+];
 
 export async function middleware(request: NextRequest) {
 	const isGuestRoute = GUEST_ROUTES.includes(request.nextUrl.pathname);

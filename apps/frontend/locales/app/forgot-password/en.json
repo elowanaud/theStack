@@ -1,0 +1,8 @@
+{
+	"app": {
+		"forgotPassword": {
+			"title": "Forgot Password",
+			"description": "Enter the email address associated with your account and we’ll send you an email with instructions to reset your password."
+		}
+	}
+}

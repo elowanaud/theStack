@@ -5,17 +5,17 @@ import { ResetPasswordTokenService } from "#services/tokens/reset_password_token
 
 @inject()
 export default class ResetPasswordController {
-	constructor(protected tokenService: ResetPasswordTokenService) {}
+	constructor(protected resetPasswordTokenService: ResetPasswordTokenService) {}
 
 	async handle({ request, response }: HttpContext) {
 		const { token, password } = await request.validateUsing(validator);
 
-		const isValidToken = await this.tokenService.verify(token);
+		const isValidToken = await this.resetPasswordTokenService.verify(token);
 		if (!isValidToken) {
 			return response.unauthorized();
 		}
 
-		const user = await this.tokenService.getUserFromToken(token);
+		const user = await this.resetPasswordTokenService.getUserFromToken(token);
 		if (!user) {
 			return response.unauthorized();
 		}

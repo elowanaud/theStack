@@ -1,5 +1,5 @@
 import { useApi } from "@/lib/api/client";
-import { useAuth } from "@/providers/Auth";
+import { env } from "@/lib/env";
 import { userValidator } from "@/validators/user_validator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
@@ -8,23 +8,25 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
 
-export function useRegister() {
-	const t = useTranslations("features.auth.register");
+export function useForgotPassword() {
+	const t = useTranslations("features.auth.forgotPassword");
 	const tGlobalError = useTranslations("errors");
-	const router = useRouter();
-	const { setCurrentUser } = useAuth((state) => state);
 	const {
 		register,
-		formState: { isSubmitting, errors },
-		setError,
 		handleSubmit,
+		setError,
+		formState: { isSubmitting, errors },
 	} = useForm({
 		resolver: zodResolver(validator),
 	});
+	const router = useRouter();
 
 	const onSubmit = async (data: z.infer<typeof validator>) => {
-		router.prefetch("/");
-		const { data: user, error } = await useApi.auth.register.$post(data);
+		router.prefetch("/login");
+		const { error } = await useApi.auth["forgot-password"].$post({
+			url: `${env.NEXT_PUBLIC_FRONTEND_URL}/reset-password`,
+			...data,
+		});
 
 		if (error) {
 			if (error.status === 422) {
@@ -37,9 +39,8 @@ export function useRegister() {
 				toast.error(tGlobalError("somethingWentWrong"));
 			}
 		} else {
-			setCurrentUser(user);
-			router.push("/");
-			toast.success(t("toasts.registerSuccess"));
+			router.push("/login");
+			toast.success(t("toasts.forgotPasswordSuccess"));
 		}
 	};
 
@@ -54,5 +55,4 @@ export function useRegister() {
 
 const validator = userValidator.pick({
 	email: true,
-	password: true,
 });

@@ -1,0 +1,12 @@
+{
+	"features": {
+		"auth": {
+			"forgotPassword": {
+				"sendInstructions": "Envoyer les instructions",
+				"toasts": {
+					"forgotPasswordSuccess": "Instructions envoyées"
+				}
+			}
+		}
+	}
+}
