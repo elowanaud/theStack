@@ -25,9 +25,6 @@ export default await Env.create(new URL("../", import.meta.url), {
 	// Session
 	SESSION_DRIVER: Env.schema.enum(["cookie", "memory"] as const),
 
-	// Frontend
-	FRONTEND_URL: Env.schema.string(),
-
 	// Mailing
 	RESEND_API_KEY: Env.schema.string(),
 	DEFAULT_FROM_EMAIL: Env.schema.string({ format: "email" }),
