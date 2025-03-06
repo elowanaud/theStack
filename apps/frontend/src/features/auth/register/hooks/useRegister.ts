@@ -23,7 +23,6 @@ export function useRegister() {
 	});
 
 	const onSubmit = async (data: z.infer<typeof validator>) => {
-		router.prefetch("/");
 		const { data: user, error } = await useApi.auth.register.$post(data);
 
 		if (error) {

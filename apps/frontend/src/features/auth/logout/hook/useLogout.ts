@@ -15,7 +15,6 @@ export function useLogout() {
 
 	const handleClick = async () => {
 		setIsLoading(true);
-		router.prefetch("/login");
 		const { error } = await useApi.auth.logout.$delete();
 
 		if (error) {

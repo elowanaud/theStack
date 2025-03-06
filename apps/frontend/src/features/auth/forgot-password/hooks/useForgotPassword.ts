@@ -22,7 +22,6 @@ export function useForgotPassword() {
 	const router = useRouter();
 
 	const onSubmit = async (data: z.infer<typeof validator>) => {
-		router.prefetch("/login");
 		const { error } = await useApi.auth["forgot-password"].$post({
 			url: `${env.NEXT_PUBLIC_FRONTEND_URL}/reset-password`,
 			...data,

@@ -21,7 +21,6 @@ export function useLogin() {
 	});
 
 	const onSubmit = async (data: z.infer<typeof validator>) => {
-		router.prefetch("/");
 		const { data: user, error } = await useApi.auth.login.$post(data);
 
 		if (error) {
