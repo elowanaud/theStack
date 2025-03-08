@@ -15,14 +15,15 @@ export function useLogout() {
 
 	const handleClick = async () => {
 		setIsLoading(true);
+		router.prefetch("/login");
 		const { error } = await useApi.auth.logout.$delete();
 
 		if (error) {
 			toast.error(tGlobalError("somethingWentWrong"));
 		} else {
 			removeCurrentUser();
-			router.push("/login");
 			toast.success(t("toasts.logoutSuccess"));
+			router.push("/login");
 		}
 		setIsLoading(false);
 	};

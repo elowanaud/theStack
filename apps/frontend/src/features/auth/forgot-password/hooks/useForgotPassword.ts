@@ -1,29 +1,17 @@
+import type { ForgotPasswordFormValues } from "@/features/auth/forgot-password/hooks/useForgotPasswordForm";
 import { useApi } from "@/lib/api/client";
-import { env } from "@/lib/env";
-import { userValidator } from "@/validators/user_validator";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { toast } from "sonner";
-import type { z } from "zod";
 
 export function useForgotPassword() {
 	const t = useTranslations("features.auth.forgotPassword");
 	const tGlobalError = useTranslations("errors");
-	const {
-		register,
-		handleSubmit,
-		setError,
-		formState: { isSubmitting, errors },
-	} = useForm({
-		resolver: zodResolver(validator),
-	});
-	const router = useRouter();
+	const { setError, reset } = useFormContext<ForgotPasswordFormValues>();
 
-	const onSubmit = async (data: z.infer<typeof validator>) => {
+	const action = async (data: ForgotPasswordFormValues) => {
 		const { error } = await useApi.auth["forgot-password"].$post({
-			url: `${env.NEXT_PUBLIC_FRONTEND_URL}/reset-password`,
+			url: `${window.location.origin}/reset-password`,
 			...data,
 		});
 
@@ -38,20 +26,10 @@ export function useForgotPassword() {
 				toast.error(tGlobalError("somethingWentWrong"));
 			}
 		} else {
-			router.push("/login");
+			reset();
 			toast.success(t("toasts.forgotPasswordSuccess"));
 		}
 	};
 
-	return {
-		register,
-		errors,
-		isSubmitting,
-		handleSubmit,
-		onSubmit,
-	};
+	return action;
 }
-
-const validator = userValidator.pick({
-	email: true,
-});
