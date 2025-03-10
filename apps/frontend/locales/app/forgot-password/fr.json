@@ -1,0 +1,8 @@
+{
+	"app": {
+		"forgotPassword": {
+			"title": "Mot de passe oublié",
+			"description": "Entrez l'adresse e-mail associée à votre compte et nous vous enverrons un e-mail avec des instructions pour réinitialiser votre mot de passe."
+		}
+	}
+}

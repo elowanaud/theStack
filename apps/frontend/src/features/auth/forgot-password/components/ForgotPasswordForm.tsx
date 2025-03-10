@@ -1,38 +1,38 @@
 "use client";
-import { useRegister } from "@/features/auth/register/hooks/useRegister";
+
+import { useForgotPassword } from "@/features/auth/forgot-password/hooks/useForgotPassword";
 import {
-	type RegisterFormValues,
-	useRegisterForm,
-} from "@/features/auth/register/hooks/useRegisterForm";
+	type ForgotPasswordFormValues,
+	useForgotPasswordForm,
+} from "@/features/auth/forgot-password/hooks/useForgotPasswordForm";
 import { Button } from "@the-stack/ui/components/Button";
 import { InputField } from "@the-stack/ui/components/InputField";
-import { PasswordField } from "@the-stack/ui/components/PasswordField";
 import { useTranslations } from "next-intl";
 import { FormProvider, useFormContext } from "react-hook-form";
 
-export function RegisterForm() {
-	const registerForm = useRegisterForm();
+export function ForgotPasswordForm() {
+	const forgotPasswordForm = useForgotPasswordForm();
 
 	return (
-		<FormProvider {...registerForm}>
+		<FormProvider {...forgotPasswordForm}>
 			<Form />
 		</FormProvider>
 	);
 }
 
 function Form() {
-	const t = useTranslations("features.auth.register");
+	const t = useTranslations("features.auth.forgotPassword");
 	const tUser = useTranslations("models.user");
 	const {
 		register,
 		handleSubmit,
 		formState: { isSubmitting, errors },
-	} = useFormContext<RegisterFormValues>();
-	const signUp = useRegister();
+	} = useFormContext<ForgotPasswordFormValues>();
+	const sendInstructions = useForgotPassword();
 
 	return (
 		<form
-			onSubmit={handleSubmit(signUp)}
+			onSubmit={handleSubmit(sendInstructions)}
 			className="grid w-full gap-4"
 			noValidate={true}
 		>
@@ -43,16 +43,9 @@ function Form() {
 				autoComplete="email"
 				{...register("email")}
 			/>
-			<PasswordField
-				label={tUser("password.label")}
-				error={
-					errors.password && tUser(`password.errors.${errors.password.message}`)
-				}
-				autoComplete="current-password"
-				{...register("password")}
-			/>
+
 			<Button type="submit" loading={isSubmitting}>
-				{t("register")}
+				{t("sendInstructions")}
 			</Button>
 		</form>
 	);

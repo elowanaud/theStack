@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import Token from "#models/token";
 import type User from "#models/user";
 
-export class ResetPasswordTokenService {
+export default class ResetPasswordTokenService {
 	async generate(user: User | null) {
 		const token = string.generateRandom(64);
 
@@ -24,6 +24,7 @@ export class ResetPasswordTokenService {
 
 	async getUserFromToken(token: string) {
 		const record = await Token.query()
+			.preload("user")
 			.where("type", "RESET_PASSWORD")
 			.where("token", token)
 			.where("expires_at", ">", DateTime.now().toSQL())

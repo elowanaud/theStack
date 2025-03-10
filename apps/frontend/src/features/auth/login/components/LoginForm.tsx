@@ -2,6 +2,7 @@
 
 import { Link } from "@/components/ui/Link/Link";
 import { useLogin } from "@/features/auth/login/hooks/useLogin";
+import { useLoginForm } from "@/features/auth/login/hooks/useLoginForm";
 import { Button } from "@the-stack/ui/components/Button";
 import { InputField } from "@the-stack/ui/components/InputField";
 import { PasswordField } from "@the-stack/ui/components/PasswordField";
@@ -12,11 +13,16 @@ export function LoginForm() {
 	const t = useTranslations("features.auth.login");
 	const tUser = useTranslations("models.user");
 
-	const { register, isSubmitting, handleSubmit, onSubmit } = useLogin();
+	const {
+		register,
+		handleSubmit,
+		formState: { isSubmitting },
+	} = useLoginForm();
+	const login = useLogin();
 
 	return (
 		<form
-			onSubmit={handleSubmit(onSubmit)}
+			onSubmit={handleSubmit(login)}
 			className="grid w-full gap-4"
 			noValidate={true}
 		>

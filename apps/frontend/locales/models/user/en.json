@@ -16,6 +16,12 @@
 					"min": "Password must be at least 8 characters long",
 					"max": "Password must be at most 32 characters long"
 				}
+			},
+			"newPassword": {
+				"label": "New password"
+			},
+			"confirmNewPassword": {
+				"label": "Confirm new password"
 			}
 		}
 	}

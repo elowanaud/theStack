@@ -9,6 +9,11 @@ services:
       - POSTGRES_DB=${DB_DATABASE}
     volumes:
       - ./docker/postgres:/var/lib/postgresql/data
-
-volumes:
-  postgres:
+  
+  redis:
+    image: redis:7-alpine
+    command: redis-server --requirepass ${QUEUE_REDIS_PASSWORD}
+    ports:
+      - ${QUEUE_REDIS_PORT}:6379
+    volumes:
+      - ./docker/redis:/data
