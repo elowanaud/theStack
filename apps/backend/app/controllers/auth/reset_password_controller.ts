@@ -1,7 +1,7 @@
 import { inject } from "@adonisjs/core";
 import type { HttpContext } from "@adonisjs/core/http";
 import vine from "@vinejs/vine";
-import { ResetPasswordTokenService } from "#services/tokens/reset_password_token_service";
+import ResetPasswordTokenService from "#services/tokens/reset_password_token_service";
 
 @inject()
 export default class ResetPasswordController {
