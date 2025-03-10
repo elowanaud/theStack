@@ -8,16 +8,14 @@ import {
 import { Button } from "@the-stack/ui/components/Button";
 import { PasswordField } from "@the-stack/ui/components/PasswordField";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { FormProvider, useFormContext } from "react-hook-form";
 
-type ResetPasswordProps = {
-	token: string;
-};
-
-export function ResetPassword({ token }: ResetPasswordProps) {
+export function ResetPassword() {
+	const searchParams = useSearchParams();
 	const resetPasswordForm = useResetPasswordForm({
 		defaultValues: {
-			token,
+			token: searchParams.get("token") ?? "",
 		},
 	});
 

@@ -1,15 +1,7 @@
 import { ResetPassword } from "@/features/auth/reset-password/components/ResetPassword";
 import { useTranslations } from "next-intl";
 
-type ResetPasswordPageProps = {
-	searchParams: {
-		token?: string;
-	};
-};
-
-export default function ResetPasswordPage({
-	searchParams,
-}: ResetPasswordPageProps) {
+export default function ResetPasswordPage() {
 	const t = useTranslations("app.resetPassword");
 
 	return (
@@ -19,8 +11,7 @@ export default function ResetPasswordPage({
 					<h1 className="font-bold text-2xl text-neutral-950">{t("title")}</h1>
 					<p className="text-neutral-500 text-sm">{t("description")}</p>
 				</div>
-
-				<ResetPassword token={searchParams.token ?? ""} />
+				<ResetPassword />
 			</div>
 		</main>
 	);
