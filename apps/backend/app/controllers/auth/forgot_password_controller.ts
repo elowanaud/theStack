@@ -2,8 +2,9 @@ import { inject } from "@adonisjs/core";
 import type { HttpContext } from "@adonisjs/core/http";
 import mail from "@adonisjs/mail/services/main";
 import vine from "@vinejs/vine";
+import ResetPasswordEmailNotification from "#mails/auth/reset_password_email_notification";
 import User from "#models/user";
-import { ResetPasswordTokenService } from "#services/tokens/reset_password_token_service";
+import ResetPasswordTokenService from "#services/tokens/reset_password_token_service";
 
 @inject()
 export default class ForgotPasswordController {
@@ -13,18 +14,11 @@ export default class ForgotPasswordController {
 		const { email, url } = await request.validateUsing(validator);
 		const user = await User.findBy("email", email);
 		const token = await this.resetPasswordTokenService.generate(user);
-		const resetPasswordLink = new URL(url);
-		resetPasswordLink.searchParams.set("token", token);
 
 		if (user) {
-			await mail.sendLater((message) => {
-				message
-					.to(user.email)
-					.subject("Reset your password")
-					.text(
-						`Hello ${user.email}, you can reset your password by clicking on the following link: ${resetPasswordLink}`,
-					);
-			});
+			await mail.sendLater(
+				new ResetPasswordEmailNotification(user, url, token),
+			);
 		}
 	}
 }

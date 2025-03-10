@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import Token from "#models/token";
 import type User from "#models/user";
 
-export class ResetPasswordTokenService {
+export default class ResetPasswordTokenService {
 	async generate(user: User | null) {
 		const token = string.generateRandom(64);
 
