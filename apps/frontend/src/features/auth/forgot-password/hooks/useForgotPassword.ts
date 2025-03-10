@@ -1,13 +1,15 @@
 import type { ForgotPasswordFormValues } from "@/features/auth/forgot-password/hooks/useForgotPasswordForm";
 import { useApi } from "@/lib/api/client";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { toast } from "sonner";
 
 export function useForgotPassword() {
 	const t = useTranslations("features.auth.forgotPassword");
 	const tGlobalError = useTranslations("errors");
-	const { setError, reset } = useFormContext<ForgotPasswordFormValues>();
+	const router = useRouter();
+	const { setError } = useFormContext<ForgotPasswordFormValues>();
 
 	const action = async (data: ForgotPasswordFormValues) => {
 		const { error } = await useApi.auth["forgot-password"].$post({
@@ -26,8 +28,8 @@ export function useForgotPassword() {
 				toast.error(tGlobalError("somethingWentWrong"));
 			}
 		} else {
-			reset();
 			toast.success(t("toasts.forgotPasswordSuccess"));
+			router.push("/login");
 		}
 	};
 

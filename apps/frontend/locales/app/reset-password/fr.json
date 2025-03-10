@@ -1,0 +1,8 @@
+{
+	"app": {
+		"resetPassword": {
+			"title": "Réinitialiser le mot de passe",
+			"description": "Votre mot de passe doit être différent de celui de votre précédent."
+		}
+	}
+}

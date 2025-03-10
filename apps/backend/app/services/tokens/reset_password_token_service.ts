@@ -24,6 +24,7 @@ export class ResetPasswordTokenService {
 
 	async getUserFromToken(token: string) {
 		const record = await Token.query()
+			.preload("user")
 			.where("type", "RESET_PASSWORD")
 			.where("token", token)
 			.where("expires_at", ">", DateTime.now().toSQL())

@@ -16,6 +16,12 @@
 					"min": "Le mot de passe doit comporter au moins 8 caractères",
 					"max": "Le mot de passe doit comporter au plus 32 caractères"
 				}
+			},
+			"newPassword": {
+				"label": "Nouveau mot de passe"
+			},
+			"confirmNewPassword": {
+				"label": "Confirmer le nouveau mot de passe"
 			}
 		}
 	}

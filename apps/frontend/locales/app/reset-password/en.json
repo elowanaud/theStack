@@ -1,0 +1,8 @@
+{
+	"app": {
+		"resetPassword": {
+			"title": "Setup a new password",
+			"description": "Your password must be different from your previous one."
+		}
+	}
+}

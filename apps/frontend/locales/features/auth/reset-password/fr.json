@@ -1,0 +1,12 @@
+{
+	"features": {
+		"auth": {
+			"resetPassword": {
+				"resetPassword": "Réinitialiser le mot de passe",
+				"toasts": {
+					"resetPasswordSuccess": "Mot de passe réinitialisé avec succès"
+				}
+			}
+		}
+	}
+}
