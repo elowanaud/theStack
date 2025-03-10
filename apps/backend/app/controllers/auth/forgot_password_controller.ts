@@ -1,10 +1,10 @@
 import { inject } from "@adonisjs/core";
 import type { HttpContext } from "@adonisjs/core/http";
-import mail from "@adonisjs/mail/services/main";
+import queue from "@rlanz/bull-queue/services/main";
 import vine from "@vinejs/vine";
-import ResetPasswordEmailNotification from "#mails/auth/reset_password_email_notification";
 import User from "#models/user";
 import ResetPasswordTokenService from "#services/tokens/reset_password_token_service";
+import SendResetPasswordEmailJob from "../../jobs/auth/send_reset_password_email_job.js";
 
 @inject()
 export default class ForgotPasswordController {
@@ -16,8 +16,16 @@ export default class ForgotPasswordController {
 		const token = await this.resetPasswordTokenService.generate(user);
 
 		if (user) {
-			await mail.sendLater(
-				new ResetPasswordEmailNotification(user, url, token),
+			queue.dispatch(
+				SendResetPasswordEmailJob,
+				{
+					user,
+					url,
+					token,
+				},
+				{
+					queueName: "email",
+				},
 			);
 		}
 	}
