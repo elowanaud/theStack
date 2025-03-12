@@ -9,27 +9,27 @@ import type { InferInput } from '@vinejs/vine/types'
 
 type AuthMeGetHead = {
   request: unknown
-  response: MakeNonSerializedTuyauResponse<import('../app/controllers/auth/me_controller.ts').default['handle'], false>
+  response: MakeNonSerializedTuyauResponse<import('../src/controllers/auth/me_controller.ts').default['handle'], false>
 }
 type AuthLoginPost = {
   request: unknown
-  response: MakeNonSerializedTuyauResponse<import('../app/controllers/auth/login_controller.ts').default['handle'], false>
+  response: MakeNonSerializedTuyauResponse<import('../src/controllers/auth/login_controller.ts').default['handle'], false>
 }
 type AuthRegisterPost = {
-  request: MakeTuyauRequest<InferInput<typeof import('../app/controllers/auth/register_controller.ts')['validator']>>
-  response: MakeNonSerializedTuyauResponse<import('../app/controllers/auth/register_controller.ts').default['handle'], true>
+  request: MakeTuyauRequest<InferInput<typeof import('../src/controllers/auth/register_controller.ts')['validator']>>
+  response: MakeNonSerializedTuyauResponse<import('../src/controllers/auth/register_controller.ts').default['handle'], true>
 }
 type AuthForgotpasswordPost = {
-  request: MakeTuyauRequest<InferInput<typeof import('../app/controllers/auth/forgot_password_controller.ts')['validator']>>
-  response: MakeNonSerializedTuyauResponse<import('../app/controllers/auth/forgot_password_controller.ts').default['handle'], true>
+  request: MakeTuyauRequest<InferInput<typeof import('../src/controllers/auth/forgot_password_controller.ts')['validator']>>
+  response: MakeNonSerializedTuyauResponse<import('../src/controllers/auth/forgot_password_controller.ts').default['handle'], true>
 }
 type AuthResetpasswordPost = {
-  request: MakeTuyauRequest<InferInput<typeof import('../app/controllers/auth/reset_password_controller.ts')['validator']>>
-  response: MakeNonSerializedTuyauResponse<import('../app/controllers/auth/reset_password_controller.ts').default['handle'], true>
+  request: MakeTuyauRequest<InferInput<typeof import('../src/controllers/auth/reset_password_controller.ts')['validator']>>
+  response: MakeNonSerializedTuyauResponse<import('../src/controllers/auth/reset_password_controller.ts').default['handle'], true>
 }
 type AuthLogoutDelete = {
   request: unknown
-  response: MakeNonSerializedTuyauResponse<import('../app/controllers/auth/logout_controller.ts').default['handle'], false>
+  response: MakeNonSerializedTuyauResponse<import('../src/controllers/auth/logout_controller.ts').default['handle'], false>
 }
 export interface ApiDefinition {
   'auth': {

@@ -18,7 +18,7 @@ export default class extends BaseSchema {
 					existingType: false,
 				})
 				.notNullable();
-			table.string("token", 64).notNullable();
+			table.string("token", 64).notNullable().unique();
 
 			table.timestamp("expires_at");
 			table.timestamp("created_at");
