@@ -6,9 +6,9 @@
 		"./api": "./.adonisjs/index.ts"
 	},
 	"scripts": {
-		"dev": "node ace tuyau:generate && node ace serve --hmr",
+		"dev": "node ace serve --hmr",
 		"worker": "node ace queue:listen --queue=email",
-		"build": "node ace tuyau:generate && node ace build",
+		"build": "node ace build",
 		"start": "node bin/server.js",
 		"lint": "biome lint",
 		"lint:fix": "biome lint --fix",
