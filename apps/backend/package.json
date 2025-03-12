@@ -13,22 +13,24 @@
 		"lint": "biome lint",
 		"lint:fix": "biome lint --fix",
 		"format": "biome format",
-		"format:fix": "biome format --fix"
+		"format:fix": "biome format --fix",
+		"type-check": "tsc --noEmit"
 	},
 	"imports": {
-		"#controllers/*": "./app/controllers/*.js",
-		"#presenters/*": "./app/presenters/*.js",
-		"#exceptions/*": "./app/exceptions/*.js",
-		"#models/*": "./app/models/*.js",
-		"#mails/*": "./app/mails/*.js",
-		"#services/*": "./app/services/*.js",
-		"#listeners/*": "./app/listeners/*.js",
-		"#events/*": "./app/events/*.js",
-		"#middleware/*": "./app/middleware/*.js",
-		"#validators/*": "./app/validators/*.js",
+		"#controllers/*": "./src/controllers/*.js",
+		"#presenters/*": "./src/presenters/*.js",
+		"#exceptions/*": "./src/exceptions/*.js",
+		"#models/*": "./src/models/*.js",
+		"#mails/*": "./src/mails/*.js",
+		"#jobs/*": "./src/jobs/*.js",
+		"#services/*": "./src/services/*.js",
+		"#listeners/*": "./src/listeners/*.js",
+		"#events/*": "./src/events/*.js",
+		"#middleware/*": "./src/middleware/*.js",
+		"#validators/*": "./src/validators/*.js",
 		"#providers/*": "./providers/*.js",
-		"#policies/*": "./app/policies/*.js",
-		"#abilities/*": "./app/abilities/*.js",
+		"#policies/*": "./src/policies/*.js",
+		"#abilities/*": "./src/abilities/*.js",
 		"#database/*": "./database/*.js",
 		"#start/*": "./start/*.js",
 		"#tests/*": "./tests/*.js",
@@ -61,6 +63,7 @@
 		"@adonisjs/session": "^7.5.1",
 		"@rlanz/bull-queue": "^3.1.0",
 		"@tuyau/core": "^0.3.2",
+		"@tuyau/openapi": "^1.0.2",
 		"@tuyau/superjson": "^0.0.2",
 		"@vinejs/vine": "^3.0.0",
 		"luxon": "^3.5.0",
@@ -68,7 +71,7 @@
 		"reflect-metadata": "^0.2.2"
 	},
 	"hotHook": {
-		"boundaries": ["./app/controllers/**/*.ts", "./app/middleware/*.ts"]
+		"boundaries": ["./src/controllers/**/*.ts", "./src/middleware/*.ts"]
 	},
 	"prettier": "@adonisjs/prettier-config"
 }

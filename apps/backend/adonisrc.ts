@@ -16,6 +16,7 @@ export default defineConfig({
 		() => import("@tuyau/core/commands"),
 		() => import("@adonisjs/mail/commands"),
 		() => import("@rlanz/bull-queue/commands"),
+		() => import("@tuyau/openapi/commands"),
 	],
 
 	/*
@@ -42,6 +43,7 @@ export default defineConfig({
 		() => import("@tuyau/core/tuyau_provider"),
 		() => import("@adonisjs/mail/mail_provider"),
 		() => import("@rlanz/bull-queue/queue_provider"),
+		() => import("@tuyau/openapi/openapi_provider"),
 	],
 
 	/*

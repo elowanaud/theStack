@@ -21,6 +21,9 @@
       "dependsOn": ["^format:fix"],
       "cache": false
     },
+    "type-check": {
+      "dependsOn": ["^type-check"]
+    },
     "test": {
       "dependsOn": ["^test"]
     },

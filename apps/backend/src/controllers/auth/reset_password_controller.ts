@@ -1,23 +1,29 @@
 import { inject } from "@adonisjs/core";
 import type { HttpContext } from "@adonisjs/core/http";
 import vine from "@vinejs/vine";
-import ResetPasswordTokenService from "#services/tokens/reset_password_token_service";
+import TokenService from "#services/token_service";
 
 @inject()
 export default class ResetPasswordController {
-	constructor(protected resetPasswordTokenService: ResetPasswordTokenService) {}
+	constructor(protected tokenService: TokenService) {}
 
 	async handle({ request, response }: HttpContext) {
 		const { token, password } = await request.validateUsing(validator);
 
-		const isValidToken = await this.resetPasswordTokenService.verify(token);
+		const isValidToken = await this.tokenService.verify({
+			type: "RESET_PASSWORD",
+			token,
+		});
 		if (!isValidToken) {
-			return response.unauthorized();
+			return response.unauthorized({ errors: [{ message: "Invalid token" }] });
 		}
 
-		const user = await this.resetPasswordTokenService.getUserFromToken(token);
+		const user = await this.tokenService.getUserFromToken({
+			type: "RESET_PASSWORD",
+			token,
+		});
 		if (!user) {
-			return response.unauthorized();
+			return response.unauthorized({ errors: [{ message: "Invalid token" }] });
 		}
 
 		await user
