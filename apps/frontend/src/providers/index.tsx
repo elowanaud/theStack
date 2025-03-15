@@ -1,5 +1,4 @@
 import { getApi } from "@/lib/api/server";
-import { env } from "@/lib/env";
 import { AuthProvider } from "@/providers/Auth";
 import { I18nProvider } from "@/providers/I18n";
 import { NuqsProvider } from "@/providers/Nuqs";
@@ -16,7 +15,7 @@ export async function Providers({ children }: PropsWithChildren) {
 
 	return (
 		<>
-			{env.NODE_ENV === "development" && <ReactScanProvider />}
+			{process.env.NODE_ENV === "development" && <ReactScanProvider />}
 			<PageLoadingBarProvider />
 			<AuthProvider currentUser={currentUser}>
 				<I18nProvider>

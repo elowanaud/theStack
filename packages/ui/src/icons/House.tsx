@@ -1,4 +1,4 @@
-import type { IconProps } from "@/types";
+import type { IconProps } from "../types.ts";
 
 export function HouseIcon({ size = 24, ...props }: IconProps) {
 	return (

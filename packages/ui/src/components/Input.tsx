@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+import { cn } from "../lib/cn.ts";
 import type { InputHTMLAttributes, Ref } from "react";
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {

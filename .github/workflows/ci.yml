@@ -73,7 +73,7 @@ jobs:
         run: pnpm install
 
       - name: Type Check
-        run: pnpm build --filter="./packages/*" && pnpm type-check
+        run: pnpm type-check
 
   test:
     name: "🧪 Test"
@@ -105,11 +105,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create .env
-        run: |
-          echo "${{ secrets.FRONTEND_ENV }}" > .env.frontend
-          echo "${{ secrets.BACKEND_ENV }}" > .env.backend
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -129,11 +124,6 @@ jobs:
     needs: [lint, format, type-check, test]
     steps:
       - uses: actions/checkout@v4
-
-      - name: Create .env
-        run: |
-          echo "${{ secrets.FRONTEND_ENV }}" > .env.frontend
-          echo "${{ secrets.BACKEND_ENV }}" > .env.backend
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3

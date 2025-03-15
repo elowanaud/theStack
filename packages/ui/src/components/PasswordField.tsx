@@ -1,4 +1,5 @@
-import { Password, type PasswordProps } from "@/components/Password/Password";
+import { cn } from "../lib/cn.ts";
+import { Password, type PasswordProps } from "./Password.tsx";
 import {
 	ErrorText,
 	type ErrorTextProps,
@@ -6,8 +7,7 @@ import {
 	type HintTextProps,
 	Label,
 	type LabelProps,
-} from "@/components/Typography/Typography";
-import { cn } from "@/lib/cn";
+} from "./Typography.tsx";
 
 export type PasswordFieldProps = PasswordProps & {
 	label?: string;

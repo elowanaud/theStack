@@ -6,7 +6,7 @@ import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension
 
 export const getApi = (cookie: ReadonlyRequestCookies | RequestCookies) =>
 	createTuyau<{ definition: ApiDefinition }>({
-		baseUrl: "http://localhost:3333",
+		baseUrl: process.env.NEXT_PUBLIC_API_URL ?? "",
 		credentials: "include",
 		headers: {
 			cookie: cookie.toString(),
