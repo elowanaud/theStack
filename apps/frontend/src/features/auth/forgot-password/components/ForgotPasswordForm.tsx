@@ -6,7 +6,8 @@ import {
 	useForgotPasswordForm,
 } from "@/features/auth/forgot-password/hooks/useForgotPasswordForm";
 import { Button } from "@the-stack/ui/components/Button";
-import { InputField } from "@the-stack/ui/components/InputField";
+import { FormField } from "@the-stack/ui/components/FormField";
+import { Input } from "@the-stack/ui/components/Input";
 import { useTranslations } from "next-intl";
 import { FormProvider, useFormContext } from "react-hook-form";
 
@@ -36,13 +37,18 @@ function Form() {
 			className="grid w-full gap-4"
 			noValidate={true}
 		>
-			<InputField
-				type="email"
+			<FormField
 				label={tUser("email.label")}
 				error={errors.email && tUser(`email.errors.${errors.email.message}`)}
-				autoComplete="email"
-				{...register("email")}
-			/>
+				labelOptions={{ htmlFor: "email" }}
+			>
+				<Input
+					id="email"
+					type="email"
+					autoComplete="email"
+					{...register("email")}
+				/>
+			</FormField>
 
 			<Button type="submit" loading={isSubmitting}>
 				{t("sendInstructions")}

@@ -1,9 +1,9 @@
-import { LoaderIcon } from "@/icons/Loader/Loader";
-import { cn } from "@/lib/cn";
-import type { Prettify } from "@/types";
 import { AnimatePresence, LazyMotion, domAnimation } from "motion/react";
 import { span as MotionSpan } from "motion/react-m";
 import type { ButtonHTMLAttributes, Ref } from "react";
+import { LoaderIcon } from "../icons/Loader.tsx";
+import { cn } from "../lib/cn.ts";
+import type { Prettify } from "../types.ts";
 
 export type ButtonProps = Prettify<
 	ButtonHTMLAttributes<HTMLButtonElement> & {

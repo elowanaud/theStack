@@ -1,6 +1,6 @@
-import { HouseIcon } from "@/icons/House/House.tsx";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "./Button.tsx";
+import { Button } from "../../../components/Button.tsx";
+import { HouseIcon } from "../../../icons/index.ts";
 
 const meta = {
 	component: Button,

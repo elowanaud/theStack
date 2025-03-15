@@ -9,6 +9,7 @@
 		"esModuleInterop": true,
 		"module": "esnext",
 		"experimentalDecorators": true,
+		"allowImportingTsExtensions": true,
 		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"isolatedModules": true,

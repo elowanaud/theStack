@@ -5,8 +5,9 @@ import {
 	useRegisterForm,
 } from "@/features/auth/register/hooks/useRegisterForm";
 import { Button } from "@the-stack/ui/components/Button";
-import { InputField } from "@the-stack/ui/components/InputField";
-import { PasswordField } from "@the-stack/ui/components/PasswordField";
+import { FormField } from "@the-stack/ui/components/FormField";
+import { Input } from "@the-stack/ui/components/Input";
+import { Password } from "@the-stack/ui/components/Password";
 import { useTranslations } from "next-intl";
 import { FormProvider, useFormContext } from "react-hook-form";
 
@@ -36,21 +37,35 @@ function Form() {
 			className="grid w-full gap-4"
 			noValidate={true}
 		>
-			<InputField
-				type="email"
+			<FormField
 				label={tUser("email.label")}
 				error={errors.email && tUser(`email.errors.${errors.email.message}`)}
-				autoComplete="email"
-				{...register("email")}
-			/>
-			<PasswordField
+				labelOptions={{ htmlFor: "email" }}
+			>
+				<Input
+					type="email"
+					id="email"
+					autoComplete="email"
+					required={true}
+					{...register("email")}
+				/>
+			</FormField>
+
+			<FormField
 				label={tUser("password.label")}
 				error={
 					errors.password && tUser(`password.errors.${errors.password.message}`)
 				}
-				autoComplete="current-password"
-				{...register("password")}
-			/>
+				labelOptions={{ htmlFor: "password" }}
+			>
+				<Password
+					id="password"
+					autoComplete="new-password"
+					required={true}
+					{...register("password")}
+				/>
+			</FormField>
+
 			<Button type="submit" loading={isSubmitting}>
 				{t("register")}
 			</Button>

@@ -4,8 +4,9 @@ import { Link } from "@/components/ui/Link/Link";
 import { useLogin } from "@/features/auth/login/hooks/useLogin";
 import { useLoginForm } from "@/features/auth/login/hooks/useLoginForm";
 import { Button } from "@the-stack/ui/components/Button";
-import { InputField } from "@the-stack/ui/components/InputField";
-import { PasswordField } from "@the-stack/ui/components/PasswordField";
+import { FormField } from "@the-stack/ui/components/FormField";
+import { Input } from "@the-stack/ui/components/Input";
+import { Password } from "@the-stack/ui/components/Password";
 import { Label } from "@the-stack/ui/components/Typography";
 import { useTranslations } from "next-intl";
 
@@ -26,12 +27,17 @@ export function LoginForm() {
 			className="grid w-full gap-4"
 			noValidate={true}
 		>
-			<InputField
-				type="email"
+			<FormField
 				label={tUser("email.label")}
-				autoComplete="email"
-				{...register("email")}
-			/>
+				labelOptions={{ htmlFor: "email" }}
+			>
+				<Input
+					type="email"
+					autoComplete="email"
+					id="email"
+					{...register("email")}
+				/>
+			</FormField>
 			<div className="grid gap-0.5">
 				<div className="flex items-baseline justify-between">
 					<Label htmlFor="password">{tUser("password.label")}</Label>
@@ -39,7 +45,8 @@ export function LoginForm() {
 						{t("forgotPassword")}
 					</Link>
 				</div>
-				<PasswordField
+				<Password
+					id="password"
 					autoComplete="current-password"
 					{...register("password")}
 				/>

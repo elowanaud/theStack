@@ -79,7 +79,6 @@
         "noIrregularWhitespace": "error",
         "noNestedTernary": "error",
         "noOctalEscape": "error",
-        "noProcessEnv": "error",
         "noStaticElementInteractions": "error",
         "noSubstr": "error",
         "noTemplateCurlyInString": "error",

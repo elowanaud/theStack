@@ -1,18 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Input } from "./Input.tsx";
+import { Password } from "../../../components/Password.tsx";
 
 const meta = {
-	component: Input,
+	component: Password,
 	argTypes: {
-		type: {
-			name: "Type",
-			description: "The type of the input",
-			control: {
-				type: "select",
-			},
-			options: ["text", "email", "number", "url"],
-			type: "string",
-		},
 		placeholder: {
 			name: "Placeholder",
 			description: "The placeholder of the input",
@@ -31,11 +22,10 @@ const meta = {
 		},
 	},
 	args: {
-		type: "text",
 		placeholder: "",
 		disabled: false,
 	},
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Password>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -44,14 +34,13 @@ export const Default: Story = {};
 
 export const Filled: Story = {
 	args: {
-		type: "text",
 		value: "Hello World",
 	},
 };
 
 export const WithPlaceholder: Story = {
 	args: {
-		placeholder: "Enter your email",
+		placeholder: "Enter your password",
 	},
 };
 
