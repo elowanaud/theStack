@@ -6,7 +6,8 @@ import {
 	useResetPasswordForm,
 } from "@/features/auth/reset-password/hooks/useResetPasswordForm";
 import { Button } from "@the-stack/ui/components/Button";
-import { PasswordField } from "@the-stack/ui/components/PasswordField";
+import { FormField } from "@the-stack/ui/components/FormField";
+import { Password } from "@the-stack/ui/components/Password";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { FormProvider, useFormContext } from "react-hook-form";
@@ -42,22 +43,34 @@ function Form() {
 			className="grid w-full gap-4"
 			noValidate={true}
 		>
-			<PasswordField
+			<FormField
 				label={tUser("newPassword.label")}
 				error={
 					errors.password && tUser(`password.errors.${errors.password.message}`)
 				}
-				{...register("password")}
-			/>
+				labelOptions={{ htmlFor: "password" }}
+			>
+				<Password
+					id="password"
+					autoComplete="new-password"
+					{...register("password")}
+				/>
+			</FormField>
 
-			<PasswordField
+			<FormField
 				label={tUser("confirmNewPassword.label")}
 				error={
 					errors.confirmPassword &&
 					tUser(`password.errors.${errors.confirmPassword.message}`)
 				}
-				{...register("confirmPassword")}
-			/>
+				labelOptions={{ htmlFor: "confirmPassword" }}
+			>
+				<Password
+					id="confirmPassword"
+					autoComplete="new-password"
+					{...register("confirmPassword")}
+				/>
+			</FormField>
 
 			<Button type="submit" loading={isSubmitting}>
 				{t("resetPassword")}

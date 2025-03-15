@@ -1,4 +1,4 @@
-export { LoaderIcon } from "@/ui/icons/Loader";
-export { HouseIcon } from "@/ui/icons/House";
-export { EyeIcon } from "@/ui/icons/Eye";
-export { EyeOffIcon } from "@/ui/icons/EyeOff";
+export { LoaderIcon } from "./Loader.tsx";
+export { HouseIcon } from "./House.tsx";
+export { EyeIcon } from "./Eye.tsx";
+export { EyeOffIcon } from "./EyeOff.tsx";

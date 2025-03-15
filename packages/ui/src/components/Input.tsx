@@ -1,5 +1,5 @@
-import { cn } from "../lib/cn.ts";
 import type { InputHTMLAttributes, Ref } from "react";
+import { cn } from "../lib/cn.ts";
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 	ref?: Ref<HTMLInputElement>;
